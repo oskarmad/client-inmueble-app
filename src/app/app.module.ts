@@ -32,9 +32,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-// import {reducers, effects } from './store';
+import {reducers, effects } from './store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { AuthInterceptor } from './auth-interceptor';
+import { AuthInterceptor } from './auth-interceptor';
 
 const StoreDevtools = !environment.production ? StoreDevtoolsModule.instrument({maxAge: 50}) : [];
 
@@ -68,18 +68,18 @@ const StoreDevtools = !environment.production ? StoreDevtoolsModule.instrument({
     MatIconModule,
     MatListModule,
     MatButtonModule,
-    // StoreDevtools,
-    // StoreModule.forRoot(reducers, {
-    //   runtimeChecks: {
-    //     strictActionImmutability: true,
-    //     strictStateImmutability: true
-    //   }
-    // }),
-    // EffectsModule.forRoot(effects),
-    // HttpClientModule,
+    StoreDevtools,
+    StoreModule.forRoot(reducers, {
+      runtimeChecks: {
+        strictActionImmutability: true,
+        strictStateImmutability: true
+      }
+    }),
+    EffectsModule.forRoot(effects),
+    HttpClientModule,
   ],
   providers: [
-    // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

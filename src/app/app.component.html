@@ -6,6 +6,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header (menuToggle)="menu.toggle()"
+    [user] = "user$ | async"
     [isAuthorized] = "isAuthorized$ | async"
 
     (signOut)="onSignOut()"></app-header>
@@ -15,14 +16,3 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<!-- [user] = "user$ | async"
-
-
-      <button (click)="menu.toggle()">Abrir Menu</button>
-
-<button (click)="onToggleSpinner()">Toggle Spinner</button>
-<button appFilesUpload [multiple]="true" (changed)="onFilesChanged($event)">Subir imagenes al servidor</button>
-<button (click)="onSuccess()">Mensaje de exito</button>
-<button (click)="onError()">Mensaje de error</button>
-
-<app-spinner *ngIf="showSpinner"></app-spinner> -->
